@@ -1,0 +1,5 @@
+node_modules/
+.env
+oauth2-token.json
+requests.json
+backend/service-account.json.bak

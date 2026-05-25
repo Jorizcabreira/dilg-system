@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>DILG Occidental Mindoro | POV Upload Portal - All 11 Municipalities</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #fff7f9;
+    color: #1e2a2e;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    background: rgba(248,224,230,0.96);
+    padding: 8px 20px 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #f1ccd6;
+    border-radius: 12px;
+    padding: 6px 10px;
+    color: #7b102c;
+    min-width: 0;
+  }
+
+  .user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #9b1238;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex: 0 0 auto;
+  }
+
+  .user-details {
+    min-width: 0;
+  }
+
+  .user-name {
+    font-size: 0.88rem;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .user-email {
+    font-size: 0.74rem;
+    color: #884256;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: -6px;
+  }
+
+  .logo-area img {
+    width: 118px;
+    max-height: 78px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+  }
+
+  .logo-text h1 {
+    font-size: 26px;
+    color: #7b102c;
+    letter-spacing: -0.3px;
+  }
+
+  .logo-text p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #884256;
+  }
+
+  /* SERVICES BUTTON & DROPDOWN */
+  .services-dropdown {
+    position: relative;
+  }
+
+  .hero-content .services-dropdown {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .services-btn {
+    background: #9b1238;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    white-space: nowrap;
+  }
+
+  .services-btn:hover {
+    background: #7b102c;
+  }
+
+  #logoutBtn {
+    background: #9b1238 !important;
+  }
+
+  .dropdown-content {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    width: 300px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1200;
+    overflow-x: hidden;
+  }
+
+  .hero-content .dropdown-content {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: auto;
+    bottom: calc(100% + 10px);
+    text-align: left;
+  }
+
+  .dropdown-content.show {
+    display: block;
+  }
+
+  .municipality-item {
+    padding: 14px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff7f9;
+    border-bottom: 1px solid #f1ccd6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+    color: #7b102c;
+  }
+
+  .municipality-item:hover {
+    background: #f8e0e6;
+  }
+
+  .municipality-item:last-child {
+    border-bottom: none;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('486755339_1051393453693039_788005064710713472_n.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 24px;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    max-width: 920px;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .hero-content p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    background: rgba(0,0,0,0.5);
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 40px;
+    margin-bottom: 18px;
+  }
+
+  /* MODAL - SIMPLE UPLOAD FORM ONLY */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .modal.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-content {
+    background: white;
+    width: 100%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 38px;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+    position: relative;
+  }
+
+  /* CLOSE BUTTON ON TOP RIGHT CORNER - X ICON */
+  .modal-close-icon {
+    position: sticky;
+    top: 15px;
+    right: 15px;
+    float: right;
+    background: #f1f1f1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    transition: 0.2s;
+    margin: 15px 15px 0 0;
+    z-index: 10;
+  }
+
+  .modal-close-icon:hover {
+    background: #9b1238;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .modal-inner {
+    padding: 0 35px 35px 35px;
+    clear: both;
+  }
+
+  .modal-title {
+    color: #7b102c;
+    font-size: 1.8rem;
+    border-left: 8px solid #9b1238;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .modal-subtitle {
+    color: #884256;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    padding-left: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 22px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #7b102c;
+  }
+
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1.5px solid #e2dccd;
+    background: white;
+    font-size: 1rem;
+    transition: 0.2s;
+    min-width: 0;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #9b1238;
+    box-shadow: 0 0 0 3px rgba(155,18,56,0.16);
+  }
+
+  /* REQUIREMENTS UPLOAD SECTION - ONLY THESE */
+  .requirements-section {
+    background: #fff7f9;
+    border-radius: 28px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .req-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #7b102c;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .req-item {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1ccd6;
+  }
+
+  .req-text {
+    flex: 2;
+    font-weight: 500;
+    min-width: 230px;
+    font-size: 0.95rem;
+    color: #7b102c;
+  }
+
+  .file-upload {
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .file-upload input {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    border: 1px solid #cbbf9a;
+    background: white;
+    width: 100%;
+    cursor: pointer;
+    min-width: 0;
+  }
+
+  .file-upload input:hover {
+    background: #f8e0e6;
+  }
+
+  .required-star {
+    color: #9b1238;
+    margin-left: 5px;
+    font-size: 1.1rem;
+  }
+
+  .municipality-badge {
+    background: #9b1238;
+    color: white;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #9b1238;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+    margin-top: 15px;
+  }
+
+  .submit-btn:hover {
+    background: #7b102c;
+    transform: scale(0.99);
+  }
+
+  .footer {
+    background: #7b102c;
+    color: #fff3f6;
+    text-align: center;
+    padding: 32px;
+    font-size: 0.9rem;
+  }
+
+  /* Scrollbar styling for dropdown */
+  .dropdown-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  .dropdown-content::-webkit-scrollbar-track {
+    background: #f0e2c5;
+    border-radius: 10px;
+  }
+  .dropdown-content::-webkit-scrollbar-thumb {
+    background: #c0a86a;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 900px) {
+    .header {
+      padding: 12px 16px 12px 6px;
+    }
+
+    .logo-area img {
+      width: 92px;
+      max-height: 64px;
+    }
+
+    .logo-text h1 {
+      font-size: 21px;
+    }
+
+    .hero-content h1 {
+      font-size: 2.4rem;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      padding: 12px;
+    }
+
+    .logo-area {
+      gap: 2px;
+      margin-left: -4px;
+    }
+
+    .logo-area img {
+      width: 78px;
+      max-height: 54px;
+    }
+
+    .logo-text h1 {
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .logo-text p {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .header-actions {
+      width: 100%;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .user-profile {
+      flex: 1 1 180px;
+    }
+
+    .user-name,
+    .user-email {
+      max-width: calc(100vw - 96px);
+    }
+
+    .services-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .dropdown-content {
+      width: 100%;
+      max-height: 260px;
+      right: auto;
+      left: 0;
+      top: 50px;
+      border-radius: 18px;
+    }
+
+    .hero-content .services-dropdown {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .hero-content .dropdown-content {
+      left: 0;
+      transform: none;
+      top: auto;
+      bottom: calc(100% + 10px);
+    }
+
+    .hero {
+      min-height: calc(100svh - 142px);
+      height: auto;
+      padding: 40px 16px;
+      background-position: center;
+    }
+
+    .modal-inner {
+      padding: 0 16px 22px 16px;
+    }
+
+    .modal {
+      align-items: flex-start;
+      padding: 12px;
+    }
+
+    .modal-content {
+      max-height: calc(100svh - 24px);
+      border-radius: 22px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      padding-left: 12px;
+      border-left-width: 5px;
+    }
+
+    .hero-content h1 {
+      font-size: 1.8rem;
+      line-height: 1.15;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 18px;
+    }
+
+    .requirements-section {
+      padding: 16px 14px;
+      border-radius: 18px;
+    }
+
+    .req-item {
+      flex-direction: column;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .req-text,
+    .file-upload {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .file-upload input {
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .municipality-badge {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 8px;
+      border-radius: 14px;
+    }
+
+    .modal-close-icon {
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+    }
+
+    .footer {
+      padding: 22px 14px;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .logo-area {
+      align-items: flex-start;
+    }
+
+    .logo-area img {
+      width: 66px;
+      max-height: 48px;
+    }
+
+    .logo-text h1 {
+      font-size: 16px;
+    }
+
+    .services-btn {
+      font-size: 12px;
+      padding: 11px 10px;
+    }
+
+    .hero-content h1 {
+      font-size: 1.45rem;
+    }
+
+    .hero-content p,
+    .municipality-item,
+    .req-text {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-area">
+    <img src="dilg-logo-department-of-the-interior-and-local-government-logo-ABiCJmdr-removebg-preview.png" alt="DILG Logo">
+    <div class="logo-text">
+      <h1>DILG Occidental Mindoro</h1>
+      <p>Citizen's Charter | POV Document Upload Portal</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <div class="user-profile" id="userProfile">
+      <div class="user-avatar" id="userAvatar">U</div>
+      <div class="user-details">
+        <div class="user-name" id="profileName">User</div>
+        <div class="user-email" id="profileEmail">Signed in</div>
+      </div>
+    </div>
+    <button class="services-btn" id="logoutBtn" style="background:#9b1238;" title="Logout">Logout</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Issuance of Department Authority to LGUs</h1>
+    <p>For the Purchase of Motor Vehicles (POV)</p>
+    <div class="services-dropdown">
+      <button class="services-btn" id="servicesBtn">📋 MUNICIPALITIES ▼</button>
+      <div class="dropdown-content" id="dropdownMenu">
+      <!-- COMPLETE LIST OF 11 MUNICIPALITIES OF OCCIDENTAL MINDORO -->
+      <div class="municipality-item" data-municipality="Abra de Ilog">📍 Abra de Ilog <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Calintaan">📍 Calintaan <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Looc">📍 Looc <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Lubang">📍 Lubang <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Magsaysay">📍 Magsaysay <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Mamburao">📍 Mamburao <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Paluan">📍 Paluan <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Rizal">📍 Rizal <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Sablayan">📍 Sablayan <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="San Jose">📍 San Jose <span>➡️</span></div>
+      <div class="municipality-item" data-municipality="Santa Cruz">📍 Santa Cruz <span>➡️</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL - CLOSE BUTTON IS X ICON ON TOP RIGHT -->
+<div class="modal" id="requestModal">
+  <div class="modal-content">
+    <div class="modal-close-icon" id="topCloseBtn">✕</div>
+    <div class="modal-inner">
+      <h2 class="modal-title">Service: Issuance of Department Authority for Purchase of Motor Vehicles (POV)</h2>
+      <div class="modal-subtitle"></div>
+      
+      <div id="dynamicFormContainer">
+        <!-- Dynamic form: Basic info + 4 requirements uploads ONLY -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  © 2026 DILG Occidental Mindoro | POV Document Upload Portal | Serving All 11 Municipalities
+</div>
+
+<script>
+  const currentUser = JSON.parse(localStorage.getItem('dilg_current_user') || 'null');
+  if (!currentUser || !currentUser.expiresAt || currentUser.expiresAt <= Date.now()) {
+    localStorage.removeItem('dilg_current_user');
+    window.location.href = '/signup.html';
+  }
+
+  if (currentUser && currentUser.role === 'admin') {
+    window.location.href = '/dashboard.html';
+  }
+
+  const profileName = document.getElementById('profileName');
+  const profileEmail = document.getElementById('profileEmail');
+  const userAvatar = document.getElementById('userAvatar');
+  if (currentUser) {
+    const displayName = currentUser.name || 'User';
+    profileName.textContent = displayName;
+    profileEmail.textContent = currentUser.email || 'Signed in';
+    userAvatar.textContent = displayName
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(part => part[0])
+      .join('')
+      .toUpperCase() || 'U';
+  }
+
+  function savePortalRequest(request) {
+    const requests = JSON.parse(localStorage.getItem('dilg_portal_requests') || '[]');
+    requests.unshift(request);
+    localStorage.setItem('dilg_portal_requests', JSON.stringify(requests));
+  }
+
+  // Complete list of 11 municipalities of Occidental Mindoro
+  const ALL_MUNICIPALITIES = [
+    "Abra de Ilog",
+    "Calintaan", 
+    "Looc",
+    "Lubang",
+    "Magsaysay",
+    "Mamburao",
+    "Paluan",
+    "Rizal",
+    "Sablayan",
+    "San Jose",
+    "Santa Cruz"
+  ];
+
+  // Generate reference number with municipality code
+  function generateRefNo(municipality) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const random = Math.floor(Math.random() * 90) + 10;
+    let muniShort = municipality.substring(0, 6).replace(/ /g, '').replace(/[^a-zA-Z]/g, '');
+    if (muniShort === "Santa") muniShort = "StaCruz";
+    if (muniShort === "Abrade") muniShort = "Abra";
+    return `POV-${muniShort}-${yyyy}${mm}${dd}-${random}`;
+  }
+
+  // Format current date
+  function getCurrentDate() {
+    const d = new Date();
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  // Render SIMPLE FORM: Name, Municipality, Contact + 4 requirements uploads ONLY
+  function renderUploadForm(municipality) {
+    const container = document.getElementById('dynamicFormContainer');
+    const refNo = generateRefNo(municipality);
+    const currentDate = getCurrentDate();
+    
+    const html = `
+      <div style="margin-bottom: 10px;">
+        <span class="municipality-badge">🏛️ LGU: ${municipality}, Occidental Mindoro</span>
+        <span class="municipality-badge" style="background: #f8e0e6; color:#7b102c;">📌 Ref: ${refNo}</span>
+        <span class="municipality-badge" style="background: #884256;">📅 ${currentDate}</span>
+      </div>
+      
+      <!-- BASIC INFO -->
+      <div class="form-group">
+        <label>Full Name <span class="required-star">*</span></label>
+        <input type="text" id="fullName" placeholder="e.g., Juan M. Dela Cruz" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Municipality <span class="required-star">*</span></label>
+        <input type="text" id="municipalityField" value="${municipality}" readonly style="background:#f3f4f6; cursor:not-allowed;">
+      </div>
+      
+      <div class="form-group">
+        <label>Contact Number / Email <span class="required-star">*</span></label>
+        <input type="text" id="contactField" placeholder="09171234567 / email@example.com" required>
+      </div>
+      
+      <!-- REQUIREMENTS UPLOADS ONLY - NOTHING ELSE -->
+      <div class="requirements-section">
+        <div class="req-title">
+          📎 Documentary Requirements
+        </div>
+        
+        <div class="req-item">
+          <div class="req-text">1. LCE Request Letter <span class="required-star">*</span></div>
+          <div class="file-upload">
+            <input type="file" class="req-file" data-req="1" accept=".pdf,.jpg,.png,.doc,.docx">
+          </div>
+        </div>
+        
+        <div class="req-item">
+          <div class="req-text">2. Certificate of Availability of Funds (Local Accountant/Treasurer) <span class="required-star">*</span></div>
+          <div class="file-upload">
+            <input type="file" class="req-file" data-req="2" accept=".pdf,.jpg,.png,.doc,.docx">
+          </div>
+        </div>
+        
+        <div class="req-item">
+          <div class="req-text">3. Certified True Copy of Ordinance + Sanggunian Resolution on fund utilization <span class="required-star">*</span></div>
+          <div class="file-upload">
+            <input type="file" class="req-file" data-req="3" accept=".pdf,.jpg,.png">
+          </div>
+        </div>
+        
+        <div class="req-item">
+          <div class="req-text">4. Updated Inventory of Existing Motor Vehicles (certified by Property Officer) <span class="required-star">*</span></div>
+          <div class="file-upload">
+            <input type="file" class="req-file" data-req="4" accept=".pdf,.jpg,.png,.xls,.xlsx">
+          </div>
+        </div>
+
+        <div class="req-item">
+          <div class="req-text">5. Others (optional) <span style="font-weight:600; font-size:0.85rem; color:#884256;">(upload additional supporting documents)</span></div>
+          <div class="file-upload">
+            <input type="file" class="optional-file" id="othersInput" multiple accept=".pdf,.jpg,.png,.doc,.docx,.xls,.xlsx,.txt">
+          </div>
+        </div>
+      </div>
+      
+      <button type="button" id="submitRequestBtn" class="submit-btn">✅ SUBMIT REQUEST</button>
+    `;
+    
+    container.innerHTML = html;
+    
+    // Submit handler
+    const submitBtn = document.getElementById('submitRequestBtn');
+    if (submitBtn) {
+      submitBtn.onclick = async () => {
+        const fullName = document.getElementById('fullName') ? document.getElementById('fullName').value.trim() : '';
+        const contact = document.getElementById('contactField') ? document.getElementById('contactField').value.trim() : '';
+
+        if (!fullName) {
+          alert("⚠️ Please enter your full name.");
+          return;
+        }
+        if (!contact) {
+          alert("⚠️ Please provide your contact number or email.");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('fullName', fullName);
+        formData.append('municipality', municipality);
+        formData.append('contact', contact);
+        formData.append('refNo', refNo);
+        formData.append('date', currentDate);
+        formData.append('requestedByName', currentUser?.name || '');
+        formData.append('requestedByEmail', currentUser?.email || '');
+
+        const fileInputs = document.querySelectorAll('.req-file');
+        let missingCount = 0;
+        let requiredAttachedCount = 0;
+        let attachedFiles = [];
+
+        fileInputs.forEach((input) => {
+          if (input.files && input.files.length > 0) {
+            formData.append('requiredFiles', input.files[0]);
+            attachedFiles.push(input.files[0].name);
+            requiredAttachedCount++;
+          } else {
+            missingCount++;
+          }
+        });
+
+        const optionalInputs = document.querySelectorAll('.optional-file');
+        let optionalCount = 0;
+        optionalInputs.forEach((input) => {
+          if (input.files && input.files.length > 0) {
+            for (let i = 0; i < input.files.length; i++) {
+              formData.append('optionalFiles', input.files[i]);
+              attachedFiles.push(input.files[i].name);
+              optionalCount++;
+            }
+          }
+        });
+
+        if (missingCount > 0) {
+          if (!confirm(`⚠️ ${missingCount} out of 4 required documents have no file attached. You can still submit, but processing may be delayed. Do you want to continue?`)) {
+            return;
+          }
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Uploading...';
+
+        try {
+          const response = await fetch('/upload', {
+            method: 'POST',
+            body: formData
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.ok) {
+            throw new Error(result.error || 'Upload failed');
+          }
+
+          let uploadedMsg = '';
+          if (result.uploaded && result.uploaded.length > 0) {
+            uploadedMsg = '\n\nUploaded files:\n' + result.uploaded.map((f, i) => `   ${i+1}. ${f.name}`).join('\n');
+          }
+
+          savePortalRequest({
+            id: Date.now(),
+            refNo,
+            fullName,
+            municipality,
+            contact,
+            requestedByName: currentUser?.name || '',
+            requestedByEmail: currentUser?.email || '',
+            date: currentDate,
+            submittedAt: new Date().toISOString(),
+            requiredAttachedCount,
+            requiredTotal: 4,
+            optionalCount,
+            files: attachedFiles,
+            driveFiles: result.uploaded || [],
+            status: 'submitted'
+          });
+
+          alert(`✅ REQUEST SUCCESSFULLY SUBMITTED!\n\n📌 Reference No: ${refNo}\n🏛️ Municipality: ${municipality}\n👤 Name: ${fullName}\n📞 Contact: ${contact}\n📄 Required documents attached: ${requiredAttachedCount}/4${optionalCount > 0 ? ' (+ ' + optionalCount + ' optional)' : ''}${uploadedMsg}\n\nThe DILG Occidental Mindoro will contact you via email or phone for updates. Thank you!`);
+          modal.classList.remove('active');
+        } catch (error) {
+          console.error('Upload error', error);
+          alert('❌ Upload failed. Please try again.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '✅ SUBMIT REQUEST';
+        }
+      };
+    }
+  }
+  
+  // Modal elements
+  const modal = document.getElementById('requestModal');
+  const topCloseBtn = document.getElementById('topCloseBtn');
+  
+  // Close modal using top X button
+  topCloseBtn.onclick = () => {
+    modal.classList.remove('active');
+  };
+  
+  // Close modal when clicking outside (background)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+  
+  // Attach click handlers to all municipalities (direct click, no side sliding)
+  function attachMunicipalityHandlers() {
+    const items = document.querySelectorAll('.municipality-item');
+    items.forEach(item => {
+      // Remove old handler to avoid duplicates
+      if (item._clickHandler) item.removeEventListener('click', item._clickHandler);
+      
+      const municipality = item.getAttribute('data-municipality');
+      const handler = (e) => {
+        e.stopPropagation();
+        // Render the clean upload form (requirements only)
+        renderUploadForm(municipality);
+        // Show modal
+        modal.classList.add('active');
+        // Close dropdown menu
+        document.getElementById('dropdownMenu').classList.remove('show');
+      };
+      item.addEventListener('click', handler);
+      item._clickHandler = handler;
+    });
+  }
+  
+  // Dropdown toggle logic
+  const servicesBtn = document.getElementById('servicesBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  
+  servicesBtn.onclick = (e) => {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+  };
+  
+  document.onclick = () => {
+    dropdownMenu.classList.remove('show');
+  };
+  
+  // Logout handler
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.onclick = async (e) => {
+      e.stopPropagation();
+      if (confirm('Are you sure you want to logout? You will need to authorize again to upload files.')) {
+        localStorage.removeItem('dilg_current_user');
+        try {
+          const response = await fetch('/logout', { method: 'POST' });
+          if (response.ok) {
+            alert('✅ Logged out successfully!');
+            window.location.href = '/signup.html';
+          } else {
+            alert('❌ Logout failed. Please try again.');
+          }
+        } catch (err) {
+          console.error('Logout error', err);
+          alert('❌ Logout error: ' + err.message);
+        }
+      }
+    };
+  }
+  
+  dropdownMenu.onclick = (e) => {
+    e.stopPropagation();
+  };
+  
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    attachMunicipalityHandlers();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DILG Occidental Mindoro | Authentication</title>
+    <style>
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body{
+            font-family:'Inter',sans-serif;
+            background:
+                linear-gradient(135deg,rgba(16,49,42,0.72),rgba(245,184,27,0.28)),
+                url('486755339_1051393453693039_788005064710713472_n.jpg') center/cover no-repeat fixed;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+        }
+        .auth-container{
+            background:rgba(248,224,230,0.95);
+            width:100%;
+            max-width:500px;
+            border-radius:40px;
+            padding:32px 36px;
+            box-shadow:0 25px 50px rgba(0,0,0,0.15);
+            backdrop-filter:blur(10px);
+        }
+        .logo{
+            width:140px; height:140px; object-fit:contain;
+            display:block; margin:0 auto 14px;
+        }
+        h2{ text-align:center; color:#7b102c; margin-bottom:8px; font-size:2rem; }
+        .subtitle{ text-align:center; color:#884256; margin-bottom:30px; }
+        .form-slider{ overflow:hidden; width:100%; }
+        .form-track{
+            display:flex; width:100%; align-items:stretch;
+            transition:transform 0.45s ease;
+        }
+        .auth-container.signup-active .form-track{ transform:translateX(-100%); }
+        .auth-form{
+            flex:0 0 100%; min-height:330px;
+            opacity:0; transform:translateY(10px);
+            transition:opacity 0.35s ease,transform 0.35s ease;
+        }
+        .auth-form.active{ opacity:1; transform:translateY(0); }
+        .auth-input{
+            width:100%; padding:15px 20px; border-radius:14px;
+            border:1.5px solid #e9d6bc; background:#fefcf7;
+            margin-bottom:16px; font-size:1rem; outline:none;
+        }
+        .auth-select{ appearance:none; color:#4b2430; cursor:pointer; }
+        .admin-code-field{ display:none; }
+        .admin-code-field.show{ display:block; }
+        .auth-input:focus{ border-color:#f5b81b; }
+        .auth-btn{
+            width:100%; padding:15px; border:none; border-radius:14px;
+            background:#f5b81b; color:#1e3a2f; font-size:1rem;
+            font-weight:800; cursor:pointer; transition:0.3s;
+        }
+        .auth-btn:hover{ background:#e6a900; }
+        .footer-text{ margin-top:20px; text-align:center; color:#884256; }
+        .footer-text a{ color:#9b1238; text-decoration:none; font-weight:700; cursor:pointer; }
+        .footer-text a:hover{ text-decoration:underline; }
+        .success-box{
+            background:#e8f7ec; color:#166534; padding:12px;
+            border-radius:14px; margin-bottom:15px; display:none;
+            text-align:center; font-weight:600;
+        }
+        @media (max-width:640px){
+            body{ align-items:flex-start; min-height:100svh; padding:18px 14px; background-attachment:scroll; }
+            .auth-container{ max-width:100%; border-radius:24px; padding:24px 20px; }
+            .logo{ width:112px; height:112px; margin-bottom:10px; }
+            h2{ font-size:1.6rem; }
+            .subtitle{ font-size:0.92rem; margin-bottom:22px; }
+            .auth-form{ min-height:300px; }
+            .auth-input, .auth-btn{ padding:13px 15px; font-size:0.95rem; }
+        }
+        @media (max-width:380px){
+            body{ padding:12px 10px; }
+            .auth-container{ border-radius:18px; padding:20px 14px; }
+            .logo{ width:92px; height:92px; }
+            h2{ font-size:1.35rem; }
+            .auth-form{ min-height:285px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <img src="dilg-logo-department-of-the-interior-and-local-government-logo-ABiCJmdr-removebg-preview.png" alt="DILG Logo" class="logo">
+
+    <div class="form-slider">
+        <div class="form-track">
+            <!-- LOGIN FORM -->
+            <div id="loginForm" class="auth-form active">
+                <h2>Sign In</h2>
+                <p class="subtitle">Access DILG Occidental Mindoro Portal</p>
+                <div class="success-box" id="signupSuccess">✅ Account created successfully! Please login.</div>
+                <input type="email" id="loginEmail" class="auth-input" placeholder="Email Address" autocomplete="email">
+                <input type="password" id="loginPassword" class="auth-input" placeholder="Password" autocomplete="current-password">
+                <button class="auth-btn" id="loginBtn">🔐 Sign In</button>
+                <div class="footer-text">Don't have an account? <a id="showSignup">Create Account</a></div>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <p class="subtitle">Register your DILG Portal Account</p>
+                <input type="text" id="signupName" class="auth-input" placeholder="Full Name" autocomplete="name">
+                <input type="email" id="signupEmail" class="auth-input" placeholder="Email Address" autocomplete="email">
+                <select id="signupRole" class="auth-input auth-select">
+                    <option value="user">User Account</option>
+                    <option value="admin">Admin Account</option>
+                </select>
+                <input type="password" id="adminCode" class="auth-input admin-code-field" placeholder="Admin Access Code" autocomplete="off">
+                <input type="password" id="signupPassword" class="auth-input" placeholder="Password" autocomplete="new-password">
+                <input type="password" id="signupConfirmPassword" class="auth-input" placeholder="Confirm Password" autocomplete="new-password">
+                <button class="auth-btn" id="signupBtn">📝 Create Account</button>
+                <div class="footer-text">Already have an account? <a id="showLogin">Sign In</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== CONFIG =====
+    // Kapag same origin (naka-serve ang frontend mula sa backend), iwan lang blank.
+    // Kung separate hosting, ilagay ang URL ng backend (e.g. "https://app.railway.app")
+    const API_BASE = '';
+
+    // ===== FORM SWITCHING =====
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const authContainer = document.querySelector('.auth-container');
+    const signupRole = document.getElementById('signupRole');
+    const adminCode = document.getElementById('adminCode');
+
+    signupRole.addEventListener('change', () => {
+        adminCode.classList.toggle('show', signupRole.value === 'admin');
+        adminCode.value = '';
+    });
+
+    document.getElementById('showSignup').addEventListener('click', () => {
+        authContainer.classList.add('signup-active');
+        loginForm.classList.remove('active');
+        signupForm.classList.add('active');
+    });
+
+    document.getElementById('showLogin').addEventListener('click', () => {
+        authContainer.classList.remove('signup-active');
+        signupForm.classList.remove('active');
+        loginForm.classList.add('active');
+    });
+
+    // ===== SIGNUP =====
+    document.getElementById('signupBtn').addEventListener('click', async () => {
+        const name = document.getElementById('signupName').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const role = signupRole.value;
+        const enteredAdminCode = adminCode.value.trim();
+        const password = document.getElementById('signupPassword').value;
+        const confirm = document.getElementById('signupConfirmPassword').value;
+
+        if (!name || !email || !password || !confirm) return alert('Please complete all fields.');
+        if (password !== confirm) return alert('Passwords do not match.');
+
+        const res = await fetch(`${API_BASE}/api/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password, role, adminCode: enteredAdminCode })
+        });
+        const data = await res.json();
+        if (!res.ok) return alert(data.error);
+
+        alert('Account created successfully! Please login.');
+        document.getElementById('showLogin').click();
+        document.getElementById('signupSuccess').style.display = 'block';
+    });
+
+    // ===== LOGIN =====
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (!email || !password) return alert('Please enter your email and password.');
+
+        const res = await fetch(`${API_BASE}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) return alert(data.error);
+
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userRole', data.role);
+        localStorage.setItem('userName', data.name);
+
+        window.location.href = data.role === 'admin' ? 'dashboard.html' : 'portal.html';
+    });
+</script>
+
+</body>
+</html>
